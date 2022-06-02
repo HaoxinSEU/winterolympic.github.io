@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+			href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Eagle+Lake&family=Rochester&family=MedievalSharp&family=Libre+Caslon+Text&family=Goudy+Bookletter+1911&display=swap"
+			rel="stylesheet">
+</head>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<!--	<script src="../js/popupscript.js"></script>-->
+<script>
+	function init() {
+		window.parent.setUpFrame();
+		return true;
+	}
+
+	function toTitleCase(str) {
+		return str.replace(
+				/\w\S*/g,
+				function (txt) {
+					return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+				}
+		);
+	}
+	function populate(arg) {
+		var name = arg.athlete_name;
+		var gameyear = arg.gameyear;
+		var event = arg.event;
+		var medal = arg.medal_type;
+		var bplace = arg.country;
+		var discipline = toTitleCase(arg.discipline);
+
+		if (!bplace) {
+			bplace = "N/A";
+		}
+		if (!gameyear) {
+			gameyear = "N/A";
+		}
+
+
+		var body = document.getElementById("body");
+		if (gameyear != 'N/A') {
+			gameyear = parseInt(gameyear);
+		}
+
+		document.getElementById("name").innerHTML = name;
+		document.getElementById("eve").innerHTML = event;
+		document.getElementById("med").innerHTML = medal;
+		document.getElementById("yob").innerHTML = gameyear;
+		document.getElementById("pob").innerHTML = bplace;
+		document.getElementById("occ").innerHTML = discipline;
+		document.getElementById("img").src = arg.pic;
+	}
+
+
+</script>
+
+<link rel="stylesheet" href="../css/style_popup.css">
+
+<body onload="init();" id="body">
+<div class="scrollable">
+
+	<div class="grid-container">
+		<div class="Image">
+			<img id="img" class="loading" loading='lazy' align='right' />
+		</div>
+		<div class="Basic-Info">
+			<span id="name" style="font-size: 45px; font-weight:bold;"> </span>
+			<br>
+			<br>
+			<span id="occ"> </span>
+			<br>
+			<br>
+			<b class="placeholder">Place of Birth:</b> <span id="pob"> </span>
+			<br>
+			<br>
+			<b class="placeholder">Year of Game:</b> <span id="yob"> </span>
+			<br>
+			<br>
+			<b class="placeholder">Event:</b> <span id="eve"> </span>
+			<br>
+			<br>
+			<b class="placeholder">Medal:</b> <span id="med"> </span>
+			<br>
+			<br>
+		</div>
+		<div class="Summary">
+			<div id="about" class="comment more" align="justify"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>
