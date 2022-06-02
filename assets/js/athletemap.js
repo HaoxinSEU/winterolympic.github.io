@@ -134,7 +134,7 @@ data.then(function (data) {
 			var imgurl = d.pic;
 
 		} else {
-			var imgurl = '../../img/Olympic_flag.svg';
+			var imgurl = '../../img/snow.jpg';
 		}
 		var img = "<img src=" + imgurl + " loading='lazy' />";
 
